@@ -1,0 +1,7 @@
+.btn-icon {
+  @apply p-2 rounded-full hover:bg-gray-100 transition-colors duration-300;
+}
+
+.card {
+  @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl;
+} 

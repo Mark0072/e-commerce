@@ -1,0 +1,38 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <a routerLink="/" class="logo">Mi Tienda</a>
+    </div>
+
+    <button class="menu-button" (click)="toggleMenu()">
+      <span class="menu-icon">☰</span>
+    </button>
+
+    <div class="navbar-menu" [class.active]="isMenuOpen">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Inicio
+      </a>
+      <a routerLink="/products" routerLinkActive="active">
+        Productos
+      </a>
+      <a routerLink="/categories" routerLinkActive="active">
+        Categorías
+      </a>
+      <a routerLink="/about" routerLinkActive="active">
+        Nosotros
+      </a>
+      <a routerLink="/contact" routerLinkActive="active">
+        Contacto
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <a routerLink="/cart" class="cart-icon">
+        🛒
+      </a>
+      <a routerLink="/login" class="login-button">
+        Iniciar Sesión
+      </a>
+    </div>
+  </div>
+</nav> 

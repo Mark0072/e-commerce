@@ -1,0 +1,56 @@
+<div class="products-container">
+  <h1>Nuestros Productos</h1>
+  
+  <div class="category-filters">
+    <button 
+      [class.active]="selectedCategory === null"
+      (click)="filterProducts(null)">
+      Todos
+    </button>
+    <button 
+      *ngFor="let category of categories" 
+      [class.active]="selectedCategory?.id === category.id"
+      (click)="filterProducts(category)">
+      {{ category.name }}
+    </button>
+  </div>
+
+  <div class="loading-container" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Cargando productos...</p>
+  </div>
+
+  <div class="error-container" *ngIf="error">
+    <p>{{ error }}</p>
+    <button (click)="loadProducts()">Reintentar</button>
+  </div>
+
+  <div class="products-grid" *ngIf="!loading && !error">
+    <div class="product-card" *ngFor="let product of products">
+      <div class="product-image">
+        <img 
+          *ngIf="product.image_url" 
+          [src]="product.image_url" 
+          [alt]="product.name"
+          (error)="product.image_url = undefined">
+        <div class="no-image" *ngIf="!product.image_url">
+          Sin imagen
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p class="category">{{ product.category?.name || 'Sin categoría' }}</p>
+        <p class="description">{{ product.description }}</p>
+        <p class="price">${{ product.price }}</p>
+        <p class="stock" [class.low-stock]="product.stock < 5">
+          Stock: {{ product.stock }}
+        </p>
+        <button (click)="addToCart(product)">Agregar al carrito</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-products" *ngIf="!loading && !error && products.length === 0">
+    <p>No hay productos disponibles en esta categoría.</p>
+  </div>
+</div> 
